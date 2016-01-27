@@ -58,10 +58,15 @@ a {
   font-family: Aileron-regular;
   text-decoration: none;
   transition: 300ms;
+
   &:hover,&:active {
     transition: 300ms;
     color: $green;
   }
+}
+
+input,a,button {
+  pointer-events: auto;
 }
 
 p {
@@ -266,10 +271,20 @@ header {
 
       @mixin bp-between $small,$medium {
         display: inline-block;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         line-height: 2.2rem;
         margin-left: 20px;
         text-align: center;
+
+        &:nth-child(even):hover {
+          transform:translate(0px,10px) !important;
+          transition: 300ms ease-in;
+        }
+
+        &:nth-child(odd):hover {
+          transform:translate(0px,-10px) !important;
+          transition: 300ms ease-in;
+        }
       }
   }
 }
@@ -281,6 +296,7 @@ section {
   position: relative;
   z-index: 10;
   margin-top: 20vh;
+  pointer-events: none;
 }
 
 #theme {
@@ -449,14 +465,35 @@ section {
 
         }
       }
-      &[type="button"] {
+      &[type="submit"] {
         display: block;
         margin: 1rem auto;
         font-family: Aileron-Light;
         background-color: $white;
         color: $green;
         border-bottom: none;
-        padding: 0.2rem 0.5rem;
+        padding: 0.2rem 0.8rem;
+      }
+    }
+  }
+}
+
+#confirmation {
+  div {
+    margin-top: 30vh;
+    lost-center:70%;
+    padding: 1rem 2rem;
+    background-color: $green;
+    p {
+      color: $white;
+      font-size: 1.3rem;
+      line-height: 1.8rem;
+
+      a {
+        color: $white;
+        &:hover {
+          color:$black;
+        }
       }
     }
   }
@@ -599,6 +636,9 @@ footer {
     }
   }
   p.four {
+    clear: both;
+    lost-column:5/9;
+    lost-offset:-2/9;
     font-size: 1.3rem;
     line-height: 1.8rem;
     @mixin bp-max $small {

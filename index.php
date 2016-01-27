@@ -300,26 +300,110 @@
       If you want to register, just fill in the form below.
     </p>
 
-    <form class="back" method="POST" action="action_page.php">
-      <label for="first-name">
+    <!-- <form class="back" method="post" action="action_page.php">
+      <label for="firstname">
         <span class="required">Your first name</span>
-        <input type="text" name="first-name" id="first-name" placeholder="Captain">
+        <input type="text" name="firstname" id="firstname" placeholder="Captain">
       </label>
-      <label for="last-name">
+      <label for="lastname">
         <span class="required">Your last name</span>
-        <input type="text" name="last-name" id="last-name" placeholder="SIDeR">
+        <input type="text" name="lastname" id="lastname" placeholder="SIDeR">
       </label>
       <label for="email">
         <span class="required">Your email</span>
-        <input type="email" name="name" placeholder="student@mail.com">
+        <input type="email" name="email" placeholder="student@mail.com">
       </label>
 
       <label for="school">
         <span>Your school</span>
         <input type="text" name="school" id="school" placeholder="Best school ever">
       </label>
-      <input type="submit" name="submit" value="submit">
-    </form>
+      <input name="submit" value="submit" type="submit">
+    </form> -->
+    <?php
+      // define variables and set to empty values
+      $firstNameErr =$lastNameErr = $schoolErr = $emailErr = "";
+      $firstname = $lastname = $email = $school = "";
+
+      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+         if (empty($_POST["firstname"])) {
+           $nameErr = "First name is required";
+         } else {
+           $firstname = test_input($_POST["firstname"]);
+           // check if name only contains letters and whitespace
+           if (!preg_match("/^[a-zA-Z ]*$/",$firstname)) {
+             $nameErr = "Only letters and white space allowed";
+           }
+         }
+              if (empty($_POST["lastname"])) {
+           $nameErr = "Last name is required";
+         } else {
+           $lastname = test_input($_POST["lastname"]);
+           // check if name only contains letters and whitespace
+           if (!preg_match("/^[a-zA-Z ]*$/",$lastname)) {
+             $nameErr = "Only letters and white space allowed";
+           }
+         }
+
+         if (empty($_POST["email"])) {
+           $emailErr = "Email is required";
+         } else {
+           $email = test_input($_POST["email"]);
+           // check if e-mail address is well-formed
+           if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+             $emailErr = "Invalid email format";
+           }
+         }
+              if (empty($_POST["school"])) {
+           $nameErr = "School is required";
+         } else {
+           $school = test_input($_POST["school"]);
+           // check if name only contains letters and whitespace
+           if (!preg_match("/^[a-zA-Z ]*$/",$school)) {
+             $nameErr = "Only letters and white space allowed";
+           }
+         }
+
+      }
+
+      else {
+
+      }
+
+      function test_input($data) {
+         $data = trim($data);
+         $data = stripslashes($data);
+         $data = htmlspecialchars($data);
+         return $data;
+      }
+      ?>
+
+
+          <form class="back" method="post" action=<"confirmation.php">
+            <label for="firstname">
+              <span class="required">Your first name</span>
+              <input type="text" name="firstname" value="<?php echo $firstname;?>" id="firstname" placeholder="Captain">
+              <span class="error"><?php echo $firstNameErr;?></span>
+            </label>
+            <label for="lastname">
+              <span class="required">Your last name</span>
+              <input type="text" name="lastname" value="<?php echo $lastname;?>" id="lastname" placeholder="SIDeR">
+              <span class="error"><?php echo $lastNameErr;?></span>
+            </label>
+            <label for="email">
+              <span class="required">Your email</span>
+              <input type="email" name="email" value="<?php echo $email;?>" placeholder="student@mail.com">
+              <span class="error"><?php echo $emailErr;?></span>
+            </label>
+
+            <label for="school">
+              <span>Your school</span>
+              <input type="text" name="school" id="school" value="<?php echo $name;?>"  placeholder="Best school ever">
+              <span class="error"><?php echo $schoolErr;?></span>
+            </label>
+            <input type="submit" name="submit" value="Submit">
+          </form>
+
   </section>
 
   <footer>
@@ -396,9 +480,6 @@
     </div>
     <p class="four">
       All the artworks have been graciously made by Anders Hoff, specifically for this event. You can see his work on his <a href="http://inconvergent.net/">website</a> or contact him on <a href="https://twitter.com/inconvergent">twitter</a>.
-    </p>
-    <p class="four">
-
     </p>
   </footer>
 

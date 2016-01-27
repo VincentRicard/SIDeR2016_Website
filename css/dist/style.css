@@ -28,6 +28,10 @@ a:hover, a:active {
 
 }
 
+input, a, button {
+  pointer-events: auto;
+}
+
 p {
   font-family: Aileron-regular;
   font-size: 0.9rem;
@@ -667,10 +671,24 @@ header li {
 @media only screen and (min-device-width: 320px) and (max-device-width:768px){
   header li{
     display:inline-block;
-    font-size:1.4rem;
+    font-size:1.2rem;
     line-height:2.2rem;
     margin-left:20px;
     text-align:center;
+
+  }
+  header li:nth-child(even):hover{
+    -webkit-transform:translate(0px,10px) !important;
+            transform:translate(0px,10px) !important;
+    -webkit-transition:300ms ease-in;
+    transition:300ms ease-in;
+
+  }
+  header li:nth-child(odd):hover{
+    -webkit-transform:translate(0px,-10px) !important;
+            transform:translate(0px,-10px) !important;
+    -webkit-transition:300ms ease-in;
+    transition:300ms ease-in;
 
   }
 
@@ -679,10 +697,24 @@ header li {
 @media only screen and (min-width: 320px) and (max-width:768px){
   header li{
     display:inline-block;
-    font-size:1.4rem;
+    font-size:1.2rem;
     line-height:2.2rem;
     margin-left:20px;
     text-align:center;
+
+  }
+  header li:nth-child(even):hover{
+    -webkit-transform:translate(0px,10px) !important;
+            transform:translate(0px,10px) !important;
+    -webkit-transition:300ms ease-in;
+    transition:300ms ease-in;
+
+  }
+  header li:nth-child(odd):hover{
+    -webkit-transform:translate(0px,-10px) !important;
+            transform:translate(0px,-10px) !important;
+    -webkit-transition:300ms ease-in;
+    transition:300ms ease-in;
 
   }
 
@@ -714,6 +746,7 @@ section {
   position: relative;
   z-index: 10;
   margin-top: 20vh;
+  pointer-events: none;
 }
 
 
@@ -1023,14 +1056,55 @@ section:after{
 
 }
 
-#contact form input[type="button"] {
+#contact form input[type="submit"] {
   display: block;
   margin: 1rem auto;
   font-family: Aileron-Light;
   background-color: #ffffff;
   color: #004d32;
   border-bottom: none;
-  padding: 0.2rem 0.5rem;
+  padding: 0.2rem 0.8rem;
+
+}
+
+#confirmation div {
+  margin-top: 30vh;
+  *zoom:1;
+  max-width:70%;
+  margin-left:auto;
+  margin-right:auto;
+  padding: 1rem 2rem;
+  background-color: #004d32;
+
+}
+
+#confirmation div:before{
+  content:'';
+  display:table;
+
+}
+
+#confirmation div:after{
+  content:'';
+  display:table;
+  clear:both;
+
+}
+
+#confirmation div p {
+  color: #ffffff;
+  font-size: 1.3rem;
+  line-height: 1.8rem;
+
+}
+
+#confirmation div p a {
+  color: #ffffff;
+
+}
+
+#confirmation div p a:hover {
+  color:#000000;
 
 }
 
@@ -1740,8 +1814,33 @@ footer .team p {
 }
 
 footer p.four {
+  clear: both;
+  width:calc(99.99% * 5/9 - (20px - 20px * 5/9));
+  margin-left:calc(99.99% * (-2/9 * -1) - (20px - 20px * (-2/9 * -1)) + 20px) !important;
   font-size: 1.3rem;
   line-height: 1.8rem
+
+}
+
+footer p.four:nth-child(n){
+  float:left;
+  margin-right:20px;
+  clear:none;
+
+}
+
+footer p.four:last-child{
+  margin-right:0;
+
+}
+
+footer p.four:nth-child(9n){
+  margin-right:0;
+
+}
+
+footer p.four:nth-child(9n + 1){
+  clear:left;
 
 }
 
